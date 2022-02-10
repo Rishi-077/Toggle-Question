@@ -1,16 +1,22 @@
-import React from 'react';
+import {React,useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Card} from 'react-bootstrap'
+import { Card } from 'react-bootstrap';
+// import {Card} from 'react-bootstrap'
+import {AiOutlinePlus, AiOutlineMinus} from 'react-icons/ai'
 
-function Question({title,info }) {
+function Question ( { title, info } )
+{
+  const [showInfo, setShowInfo] = useState(false)
   return ( 
-    <article className='question'>
+    <Card className="main">
+    <article>
       <header className='header'>
         <h4 className='title'>{title}</h4>
-        <button className='button'>btn</button>
-      </header>
-        <p className='info'>{info}</p>
+          <button className='button' onClick={() => setShowInfo( !showInfo )}>{ showInfo ? <AiOutlineMinus /> : <AiOutlinePlus />}</button>
+        </header>
+        { showInfo && <p className='info'>{info}</p>}
     </article>
+    </Card>
    );
 }
 
